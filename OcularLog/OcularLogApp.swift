@@ -11,7 +11,17 @@ import SwiftUI
 struct OcularLogApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            TabView {
+                HomeView()
+                    .tabItem {
+                        Label("Home", systemImage: "Home")
+                    }
+                LogView()
+                    .tabItem{
+                        Label("Log", systemImage: "Book")
+                    }
+            }
+            
         }
     }
 }
