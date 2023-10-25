@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		301026A32AE8D02A00641D6F /* LogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 301026A22AE8D02A00641D6F /* LogView.swift */; };
+		30477D302AE92B1300EF76ED /* ReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30477D2F2AE92B1300EF76ED /* ReviewView.swift */; };
 		30B1FA0B2AE0A6100082F8DA /* OcularLogApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B1FA0A2AE0A6100082F8DA /* OcularLogApp.swift */; };
 		30B1FA0D2AE0A6100082F8DA /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B1FA0C2AE0A6100082F8DA /* HomeView.swift */; };
 		30B1FA0F2AE0A6130082F8DA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 30B1FA0E2AE0A6130082F8DA /* Assets.xcassets */; };
@@ -36,6 +37,7 @@
 
 /* Begin PBXFileReference section */
 		301026A22AE8D02A00641D6F /* LogView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogView.swift; sourceTree = "<group>"; };
+		30477D2F2AE92B1300EF76ED /* ReviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewView.swift; sourceTree = "<group>"; };
 		30B1FA072AE0A6100082F8DA /* OcularLog.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OcularLog.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		30B1FA0A2AE0A6100082F8DA /* OcularLogApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OcularLogApp.swift; sourceTree = "<group>"; };
 		30B1FA0C2AE0A6100082F8DA /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -78,6 +80,7 @@
 			children = (
 				30B1FA0C2AE0A6100082F8DA /* HomeView.swift */,
 				301026A22AE8D02A00641D6F /* LogView.swift */,
+				30477D2F2AE92B1300EF76ED /* ReviewView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -268,6 +271,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				30477D302AE92B1300EF76ED /* ReviewView.swift in Sources */,
 				30B1FA0D2AE0A6100082F8DA /* HomeView.swift in Sources */,
 				301026A32AE8D02A00641D6F /* LogView.swift in Sources */,
 				30B1FA0B2AE0A6100082F8DA /* OcularLogApp.swift in Sources */,

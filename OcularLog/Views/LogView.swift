@@ -21,7 +21,6 @@ struct LogView: View {
                 .bold()
             
         }
-        
         Spacer()
     }
 }
