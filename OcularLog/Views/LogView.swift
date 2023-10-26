@@ -7,21 +7,43 @@
 
 import SwiftUI
 
-
 let questions = ["Placeholder"]
-var questionnumber = 0
-var questiontext = questions[questionnumber]
-var answers : [Int] = []
+let imageNames = ["Reading"]
+var questionNumber = 0
+
 
 struct LogView: View {
+    @State private var questiontext = questions[questionNumber]
+    @State private var answers : [Int] = []
+    @State private var unroundedanswer: Double = 0
+
     var body: some View {
-        LazyVStack(){
-            Text(questiontext)
-                .font(.largeTitle)
-                .bold()
-            
+        VStack(){
+            VStack(){
+                Text(questiontext)
+                    .font(.largeTitle)
+                    .bold()
+                Image(imageNames[questionNumber])
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .padding()
+                HStack(){
+                    Text("Not at All")
+                    Slider(value: $unroundedanswer,
+                           in: 0 ... 4,
+                           step: 1)
+                    Text("Quite A Lot")
+                }
+                .padding()
+                
+                Text(String(Int(unroundedanswer.rounded())))
+                    .foregroundColor(.blue)
+                    .font(.title2)
+                
+            }
+            Spacer()
         }
-        Spacer()
+        
     }
 }
 
