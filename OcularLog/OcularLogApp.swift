@@ -12,21 +12,25 @@ struct OcularLogApp: App {
     var body: some Scene {
         WindowGroup {
             TabView {
-                //TODO: fix logview duplicating.
-                HomeView()
-                    .tabItem {
-                        Label("Home", systemImage: "house")
-                    }
-                LogView()
-                    .tabItem{
-                        Label("Log", systemImage: "book")
-                    }
-                ReviewView()
-                    .tabItem{
-                        Label("Review", systemImage: "calendar")
-                    }
-            }
-            
+                Group{
+                    HomeView()
+                        .tabItem {
+                            Label("Home", systemImage: "house")
+                        }
+                    LogView()
+                        .tabItem{
+                            Label("Log", systemImage: "book")
+                        }
+                    ReviewView()
+                        .tabItem{
+                            Label("Review", systemImage: "calendar")
+                        }
+                }
+                .toolbarBackground(Color.Neumorphic.main, for: .tabBar)
+                .toolbarBackground(.visible, for: .tabBar)
+                .toolbarColorScheme(.light, for: .tabBar)
+                    
+                }
         }
     }
 }

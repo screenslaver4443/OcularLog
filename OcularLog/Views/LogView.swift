@@ -6,26 +6,30 @@
 //
 
 import SwiftUI
+import Foundation
+import Neumorphic
 
 struct LogView: View {
+    let defaults = UserDefaults.standard
+    let today = Date.now
     let questions = ["reading?", "seeing in the distance?", "recognising faces across the street?", "watching tv?", "seeing in bright light?", "seeing in poor light?", "appreciating colours?", "driving a car during the day?", "driving a car during the night?", "walking inside?", "walking outside?", "using steps & stairs?", "crossing the road?", "using public transport?", "travelling independently?", "moving in unfamilair surroundings?", "doing employment/housework/education activities?", "doing hobbies/leisure activities?"]
-    let imageNames = ["Reading"]
+    let imageNames = ["reading", "distance", "faces", "tv", "brightlight", "darklight", "colour", "car", "car", "indoorwalking", "outdoorwalking", "stairs", "streetcrossing", "publictransport", "independenttravel", "surroundings", "work","hobbies"]
+    let date = Date.now.formatted(date: .numeric, time: .omitted)
+    @State var answers : Array<Double> = []
     @State var questionNumber = 0
-    @State var score : Float = 0
     @State var unroundedanswer: Double = 0
     @State var finished :Bool = false
-    
     var body: some View {
         VStack(){
             if (finished == false){
                 VStack(){
                     Text("How much difficulty are you having: ").font(.title)+Text(questions[questionNumber])
                         .font(.title)
-                    //                Image(imageNames[questionNumber])
-                    //                    .resizable()
-                    //                    .aspectRatio(contentMode: .fit)
-                    //                    .frame(minWidth: 200, maxWidth: 300, minHeight: 250, maxHeight: 350)
-                    //                    .padding()
+                    Image(imageNames[questionNumber])
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .frame(minWidth: 200, maxWidth: 300, minHeight: 250, maxHeight: 350)
+                        .padding()
                     HStack(){
                         Text("None at All")
                         Slider(value: $unroundedanswer,
@@ -41,21 +45,25 @@ struct LogView: View {
                     Button(action: {submit(answer: Int(unroundedanswer.rounded()))}){
                         Text("Submit Answer")
                     }
-                    .buttonStyle(.bordered)
+                    .softButtonStyle(RoundedRectangle(cornerRadius: 20), pressedEffect: .flat)
                 }
+                Spacer()
             }
             else{
-                Text("Hello World")
-                Text(String(score))
+                Text(Date.now.formatted(date: .long, time: .omitted)).font(.largeTitle)+Text(" has been logged.").font(.largeTitle)
+                Button("Replace Response"){
+                    finished = false
+                    questionNumber = 1
+                }.softButtonStyle(.capsule, pressedEffect: .flat)
+                
             }
-            Spacer()
         }
         
         
     }
+    
     func submit(answer: Int){
-            score += answerCalc(enteredAnswer: answer)
-            chooseQuestion(answer: answer)
+        answers.append(Double(answerCalc(enteredAnswer: answer)))
     }
     
     func answerCalc(enteredAnswer: Int) -> Float{
@@ -177,7 +185,7 @@ struct LogView: View {
             if (enteredAnswer == 4){
                 return (2.17)
             }
-        //Begin Mobility
+            //Begin Mobility
         case 10:
             if (enteredAnswer == 1){
                 return (-2.34)
@@ -269,7 +277,7 @@ struct LogView: View {
             if (enteredAnswer == 4){
                 return (3.31)
             }
-        //End Mobility
+            //End Mobility
         case 17:
             if (enteredAnswer == 1){
                 return (-1.83)
@@ -301,19 +309,18 @@ struct LogView: View {
             return (0.0)
         }
         return 0
-    }
-    
-    func chooseQuestion(answer: Int){
-        //Placeholder until scoring system is known
-        if (questionNumber <= questions.count-2){
-            questionNumber += 1 //Will cause a crash if number exceeds questions array
-        }
-        else{
-            finished = true
+        func chooseQuestion(answer: Int){
+            //Placeholder until scoring system is known
+            if (questionNumber <= questions.count-2){
+                questionNumber += 1
+            }
+            else{
+                finished = true
+                defaults.set(answers, forKey: String(date))
+            }
         }
     }
 }
-
 #Preview {
     LogView()
 }

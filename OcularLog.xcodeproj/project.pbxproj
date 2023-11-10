@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		301026A32AE8D02A00641D6F /* LogView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 301026A22AE8D02A00641D6F /* LogView.swift */; };
 		30477D302AE92B1300EF76ED /* ReviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30477D2F2AE92B1300EF76ED /* ReviewView.swift */; };
+		308624A42AF310E400762026 /* Neumorphic in Frameworks */ = {isa = PBXBuildFile; productRef = 308624A32AF310E400762026 /* Neumorphic */; };
 		30B1FA0B2AE0A6100082F8DA /* OcularLogApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B1FA0A2AE0A6100082F8DA /* OcularLogApp.swift */; };
 		30B1FA0D2AE0A6100082F8DA /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B1FA0C2AE0A6100082F8DA /* HomeView.swift */; };
 		30B1FA0F2AE0A6130082F8DA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 30B1FA0E2AE0A6130082F8DA /* Assets.xcassets */; };
@@ -16,6 +17,7 @@
 		30B1FA1C2AE0A6130082F8DA /* OcularLogTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B1FA1B2AE0A6130082F8DA /* OcularLogTests.swift */; };
 		30B1FA262AE0A6130082F8DA /* OcularLogUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B1FA252AE0A6130082F8DA /* OcularLogUITests.swift */; };
 		30B1FA282AE0A6130082F8DA /* OcularLogUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30B1FA272AE0A6130082F8DA /* OcularLogUITestsLaunchTests.swift */; };
+		30F045FE2AF9C3C1009A68BD /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30F045FD2AF9C3C1009A68BD /* SettingsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +50,8 @@
 		30B1FA212AE0A6130082F8DA /* OcularLogUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OcularLogUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		30B1FA252AE0A6130082F8DA /* OcularLogUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OcularLogUITests.swift; sourceTree = "<group>"; };
 		30B1FA272AE0A6130082F8DA /* OcularLogUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OcularLogUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		30C60B5C2AFB3AA000B795CD /* OcularLog.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = OcularLog.entitlements; sourceTree = "<group>"; };
+		30F045FD2AF9C3C1009A68BD /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +59,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				308624A42AF310E400762026 /* Neumorphic in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -81,6 +86,7 @@
 				30B1FA0C2AE0A6100082F8DA /* HomeView.swift */,
 				301026A22AE8D02A00641D6F /* LogView.swift */,
 				30477D2F2AE92B1300EF76ED /* ReviewView.swift */,
+				30F045FD2AF9C3C1009A68BD /* SettingsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -108,6 +114,7 @@
 		30B1FA092AE0A6100082F8DA /* OcularLog */ = {
 			isa = PBXGroup;
 			children = (
+				30C60B5C2AFB3AA000B795CD /* OcularLog.entitlements */,
 				30B1FA0A2AE0A6100082F8DA /* OcularLogApp.swift */,
 				301026A42AE8D02F00641D6F /* Views */,
 				30B1FA0E2AE0A6130082F8DA /* Assets.xcassets */,
@@ -157,6 +164,9 @@
 			dependencies = (
 			);
 			name = OcularLog;
+			packageProductDependencies = (
+				308624A32AF310E400762026 /* Neumorphic */,
+			);
 			productName = OcularLog;
 			productReference = 30B1FA072AE0A6100082F8DA /* OcularLog.app */;
 			productType = "com.apple.product-type.application";
@@ -229,6 +239,9 @@
 				Base,
 			);
 			mainGroup = 30B1F9FE2AE0A6100082F8DA;
+			packageReferences = (
+				308624A22AF310E400762026 /* XCRemoteSwiftPackageReference "neumorphic" */,
+			);
 			productRefGroup = 30B1FA082AE0A6100082F8DA /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -271,6 +284,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				30F045FE2AF9C3C1009A68BD /* SettingsView.swift in Sources */,
 				30477D302AE92B1300EF76ED /* ReviewView.swift in Sources */,
 				30B1FA0D2AE0A6100082F8DA /* HomeView.swift in Sources */,
 				301026A32AE8D02A00641D6F /* LogView.swift in Sources */,
@@ -435,6 +449,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = OcularLog/OcularLog.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"OcularLog/Preview Content\"";
@@ -444,8 +460,9 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleDarkContent;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -453,9 +470,13 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.pesudovs.OcularLog;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -464,6 +485,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = OcularLog/OcularLog.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"OcularLog/Preview Content\"";
@@ -473,8 +496,9 @@
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleDarkContent;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -482,9 +506,13 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = com.pesudovs.OcularLog;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -604,6 +632,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		308624A22AF310E400762026 /* XCRemoteSwiftPackageReference "neumorphic" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/costachung/neumorphic/";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		308624A32AF310E400762026 /* Neumorphic */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 308624A22AF310E400762026 /* XCRemoteSwiftPackageReference "neumorphic" */;
+			productName = Neumorphic;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 30B1F9FF2AE0A6100082F8DA /* Project object */;
 }
