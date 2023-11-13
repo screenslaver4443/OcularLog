@@ -6,9 +6,17 @@
 //
 
 import SwiftUI
+import Charts
+import Foundation
 
 struct ReviewView: View {
     var body: some View {
+//        NavigationSplitView {
+//            List{
+//                
+//                    
+//                }
+//            }
         Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
     }
 }

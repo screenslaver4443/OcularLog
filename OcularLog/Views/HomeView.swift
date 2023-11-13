@@ -89,18 +89,26 @@ extension Date {
     }
   }
 }
+let averageKeyToday = Date.now.formatted(date: .numeric, time: .omitted)+"average"
+let averageKeyYesterday = Date().dayBefore.formatted(date: .numeric, time: .omitted)+"average"
+let averageKeyMonday = Date().previous(.monday).formatted(date: .numeric, time: .omitted)+"average"
 let defaults = UserDefaults.standard
 struct HomeView: View {
-    @State var todaysLog = defaults.array(forKey: Date.now.formatted(date: .numeric, time: .omitted)) as? [Double]
-    @State var yesterdaysLog = defaults.string(forKey: Date().dayBefore.formatted(date: .numeric, time: .omitted))
-    @State var mondaysLog = defaults.string(forKey: Date().previous(.monday).formatted(date: .numeric, time: .omitted))
+    var todaysLogAverage = defaults.double(forKey: averageKeyToday)
+    var yesterdaysLogAverage = defaults.string(forKey: averageKeyYesterday)
+    var mondaysLogAverage = defaults.string(forKey: averageKeyMonday)
     var body: some View {
         VStack (alignment: .leading) {
             Text("Today")
                 .font(.largeTitle)
                 .bold()
             VStack() {
-                Text(String(todaysLog?[19] ?? 0.0))
+                if todaysLogAverage != nil {
+                    Text("Activity Limit Score: "+String(todaysLogAverage))
+                }
+                else {
+                    Text("No log for today")
+                }
             }
                 .frame(width: 350, height: 300)
                 .padding()
@@ -109,7 +117,7 @@ struct HomeView: View {
                 .font(.title2)
                 .bold()
             VStack () {
-                Text(yesterdaysLog ?? "No log for yesterday")
+                Text(yesterdaysLogAverage ?? "No log for yesterday")
             }
                 .frame(width: 350, height: 100)
                 .padding()
@@ -118,7 +126,7 @@ struct HomeView: View {
                 .font(.title2)
                 .bold()
             VStack () {
-                Text(mondaysLog ?? "No log for monday")
+                Text(mondaysLogAverage ?? "No log for monday")
             }
                 .frame(width: 350, height: 100)
                 .padding()
@@ -127,6 +135,7 @@ struct HomeView: View {
         }
         .padding()
     }
+    
 }
 #Preview {
     HomeView()

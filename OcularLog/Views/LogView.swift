@@ -17,7 +17,6 @@ struct LogView: View {
     let date = Date.now.formatted(date: .numeric, time: .omitted)
     @State var answers : Array<Double> = []
     @State var questionNumber = 0
-    @State var unroundedanswer: Double = 0
     @State var finished :Bool = false
     var body: some View {
         VStack(){
@@ -31,22 +30,21 @@ struct LogView: View {
                         .frame(minWidth: 200, maxWidth: 300, minHeight: 250, maxHeight: 350)
                         .padding()
                     HStack(){
-                        Text("None at All")
-                        Slider(value: $unroundedanswer,
-                               in: 1 ... 4,
-                               step: 1).onAppear {
-                            if(self.unroundedanswer < 1) {
-                                self.unroundedanswer = 1
-                            }
-                        }
-                        Text("Quite A Lot")
+                        Button(action: {submit(answer: 1)}){
+                            Text("None at All")
+                        }.softButtonStyle(RoundedRectangle(cornerRadius: 20), pressedEffect: .flat)
+                        Button(action: {submit(answer: 2)}){
+                            Text("A little Bit")
+                        }.softButtonStyle(RoundedRectangle(cornerRadius: 20), pressedEffect: .flat)
+                        Button(action: {submit(answer: 3)}){
+                            Text("Quite a Bit")
+                        }.softButtonStyle(RoundedRectangle(cornerRadius: 20), pressedEffect: .flat)
+                        Button(action: {submit(answer: 4)}){
+                            Text("Quite a Lot")
+                        }.softButtonStyle(RoundedRectangle(cornerRadius: 20), pressedEffect: .flat)
                     }
-                    .padding()
-                    Button(action: {submit(answer: Int(unroundedanswer.rounded()))}){
-                        Text("Submit Answer")
-                    }
-                    .softButtonStyle(RoundedRectangle(cornerRadius: 20), pressedEffect: .flat)
-                }
+                    
+                }.padding()
                 Spacer()
             }
             else{
@@ -64,8 +62,32 @@ struct LogView: View {
     
     func submit(answer: Int){
         answers.append(Double(answerCalc(enteredAnswer: answer)))
+        chooseQuestion(answer: answer)
     }
-    
+    func averageArray(array: Array<Double>) -> Double{
+        var returnValue = 0.0
+        for i in array {
+            returnValue += i
+        }
+        return returnValue
+    }
+    func chooseQuestion(answer: Int){
+        //Placeholder until scoring system is known
+        if (questionNumber <= questions.count-2){
+            questionNumber += 1
+        }
+        else{
+            finished = true
+            let arrayKey = String(date)+"array"
+            let averageScore = averageArray(array: answers)
+            let averageKey = String(date)+"average"
+            var datesLogged = defaults.array(forKey: "datesArray") ?? []
+            datesLogged.append(date)
+            defaults.set(answers, forKey: arrayKey)
+            defaults.set(averageScore, forKey: averageKey)
+            defaults.set(datesLogged, forKey: "datesArray")
+        }
+    }
     func answerCalc(enteredAnswer: Int) -> Float{
         switch questionNumber+1{
         case 1:
@@ -309,16 +331,6 @@ struct LogView: View {
             return (0.0)
         }
         return 0
-        func chooseQuestion(answer: Int){
-            //Placeholder until scoring system is known
-            if (questionNumber <= questions.count-2){
-                questionNumber += 1
-            }
-            else{
-                finished = true
-                defaults.set(answers, forKey: String(date))
-            }
-        }
     }
 }
 #Preview {
