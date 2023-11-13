@@ -9,12 +9,20 @@ import SwiftUI
 import Foundation
 import Neumorphic
 
+struct UserLog: Codable {
+    var date = Date.now.formatted(date: .numeric, time: .omitted)
+    let answersArray: Array<Double>
+    let averageScore: Double
+    let empty: Optional<Bool>
+}
+
+let encoder = JSONEncoder()
+
 struct LogView: View {
     let defaults = UserDefaults.standard
     let today = Date.now
     let questions = ["reading?", "seeing in the distance?", "recognising faces across the street?", "watching tv?", "seeing in bright light?", "seeing in poor light?", "appreciating colours?", "driving a car during the day?", "driving a car during the night?", "walking inside?", "walking outside?", "using steps & stairs?", "crossing the road?", "using public transport?", "travelling independently?", "moving in unfamilair surroundings?", "doing employment/housework/education activities?", "doing hobbies/leisure activities?"]
     let imageNames = ["reading", "distance", "faces", "tv", "brightlight", "darklight", "colour", "car", "car", "indoorwalking", "outdoorwalking", "stairs", "streetcrossing", "publictransport", "independenttravel", "surroundings", "work","hobbies"]
-    let date = Date.now.formatted(date: .numeric, time: .omitted)
     @State var answers : Array<Double> = []
     @State var questionNumber = 0
     @State var finished :Bool = false
@@ -53,7 +61,6 @@ struct LogView: View {
                     finished = false
                     questionNumber = 1
                 }.softButtonStyle(.capsule, pressedEffect: .flat)
-                
             }
         }
         
@@ -69,6 +76,8 @@ struct LogView: View {
         for i in array {
             returnValue += i
         }
+        returnValue /= Double(array.count)
+        returnValue = round(returnValue*10)/10
         return returnValue
     }
     func chooseQuestion(answer: Int){
@@ -78,13 +87,12 @@ struct LogView: View {
         }
         else{
             finished = true
-            let arrayKey = String(date)+"array"
-            let averageScore = averageArray(array: answers)
-            let averageKey = String(date)+"average"
+            let tempUserLog = UserLog(answersArray: answers, averageScore: averageArray(array: answers), empty: false)
             var datesLogged = defaults.array(forKey: "datesArray") ?? []
-            datesLogged.append(date)
-            defaults.set(answers, forKey: arrayKey)
-            defaults.set(averageScore, forKey: averageKey)
+            datesLogged.append(tempUserLog.date)
+            if let encoded = try? encoder.encode(tempUserLog) {
+                defaults.set(encoded, forKey: tempUserLog.date)
+            }
             defaults.set(datesLogged, forKey: "datesArray")
         }
     }

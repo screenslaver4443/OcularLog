@@ -8,6 +8,7 @@
 import SwiftUI
 import Neumorphic
 import Foundation
+import Charts
 
 extension Date {
     var dayBefore: Date {
@@ -89,25 +90,40 @@ extension Date {
     }
   }
 }
-let averageKeyToday = Date.now.formatted(date: .numeric, time: .omitted)+"average"
-let averageKeyYesterday = Date().dayBefore.formatted(date: .numeric, time: .omitted)+"average"
-let averageKeyMonday = Date().previous(.monday).formatted(date: .numeric, time: .omitted)+"average"
+
+
+let decoder = JSONDecoder()
+let KeyToday = Date.now.formatted(date: .numeric, time: .omitted)
+let KeyYesterday = Date().dayBefore.formatted(date: .numeric, time: .omitted)
+let KeyMonday = Date().previous(.monday).formatted(date: .numeric, time: .omitted)
 let defaults = UserDefaults.standard
+
+func getLogs(Key: String) -> UserLog{
+    if let LogEncoded: Data = defaults.object(forKey: KeyToday) as? Data{
+        if let Log = try? decoder.decode(UserLog.self, from: LogEncoded){
+            return Log
+        }
+    }
+        return UserLog(answersArray: [], averageScore: 0.0, empty: true)
+}
+
 struct HomeView: View {
-    var todaysLogAverage = defaults.double(forKey: averageKeyToday)
-    var yesterdaysLogAverage = defaults.string(forKey: averageKeyYesterday)
-    var mondaysLogAverage = defaults.string(forKey: averageKeyMonday)
+
+//    var yesterdaysLogAverage = defaults.string(forKey: averageKeyYesterday)
+//    var mondaysLogAverage = defaults.string(forKey: averageKeyMonday)
+    let todaysLog = getLogs(Key: KeyToday)
+    
     var body: some View {
         VStack (alignment: .leading) {
             Text("Today")
                 .font(.largeTitle)
                 .bold()
             VStack() {
-                if todaysLogAverage != nil {
-                    Text("Activity Limit Score: "+String(todaysLogAverage))
+                if todaysLog.empty ?? false{
+                    Text("No log for today")
                 }
                 else {
-                    Text("No log for today")
+                    Text("Activity Limit Score: "+String(todaysLog.averageScore))
                 }
             }
                 .frame(width: 350, height: 300)
@@ -116,8 +132,13 @@ struct HomeView: View {
             Text("Yesterday")
                 .font(.title2)
                 .bold()
-            VStack () {
-                Text(yesterdaysLogAverage ?? "No log for yesterday")
+            VStack() {
+                if todaysLog.empty ?? false{
+                    Text("No log for yesterday")
+                }
+                else {
+                    Text("Activity Limit Score: "+String(todaysLog.averageScore))
+                }
             }
                 .frame(width: 350, height: 100)
                 .padding()
@@ -125,8 +146,13 @@ struct HomeView: View {
             Text("Last Monday")
                 .font(.title2)
                 .bold()
-            VStack () {
-                Text(mondaysLogAverage ?? "No log for monday")
+            VStack() {
+                if todaysLog.empty ?? false{
+                    Text("No log for monday")
+                }
+                else {
+                    Text("Activity Limit Score: "+String(todaysLog.averageScore))
+                }
             }
                 .frame(width: 350, height: 100)
                 .padding()
