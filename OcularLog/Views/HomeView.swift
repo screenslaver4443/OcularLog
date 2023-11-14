@@ -99,7 +99,7 @@ let KeyMonday = Date().previous(.monday).formatted(date: .numeric, time: .omitte
 let defaults = UserDefaults.standard
 
 func getLogs(Key: String) -> UserLog{
-    if let LogEncoded: Data = defaults.object(forKey: KeyToday) as? Data{
+    if let LogEncoded: Data = defaults.object(forKey: Key) as? Data{
         if let Log = try? decoder.decode(UserLog.self, from: LogEncoded){
             return Log
         }
@@ -108,10 +108,9 @@ func getLogs(Key: String) -> UserLog{
 }
 
 struct HomeView: View {
-
-//    var yesterdaysLogAverage = defaults.string(forKey: averageKeyYesterday)
-//    var mondaysLogAverage = defaults.string(forKey: averageKeyMonday)
     let todaysLog = getLogs(Key: KeyToday)
+    let yesterdaysLog = getLogs(Key: KeyYesterday)
+    let mondaysLog = getLogs(Key: KeyMonday)
     
     var body: some View {
         VStack (alignment: .leading) {
@@ -124,8 +123,16 @@ struct HomeView: View {
                 }
                 else {
                     Text("Activity Limit Score: "+String(todaysLog.averageScore))
+                    Chart{
+                        ForEach(todaysLog.answersArray, id: \.self){answer in
+                                BarMark(x: .value("Question", "1"),
+                                        y: .value("Answer", answer)
+                                )
+                            }
+                        }
+                    
+                    }
                 }
-            }
                 .frame(width: 350, height: 300)
                 .padding()
                 .background(RoundedRectangle(cornerRadius: 25).fill(Color.Neumorphic.main).softOuterShadow().frame(width: 350, height: 300))
@@ -133,25 +140,25 @@ struct HomeView: View {
                 .font(.title2)
                 .bold()
             VStack() {
-                if todaysLog.empty ?? false{
+                if yesterdaysLog.empty ?? false{
                     Text("No log for yesterday")
                 }
                 else {
-                    Text("Activity Limit Score: "+String(todaysLog.averageScore))
+                    Text("Activity Limit Score: "+String(yesterdaysLog.averageScore))
                 }
             }
                 .frame(width: 350, height: 100)
                 .padding()
                 .background(RoundedRectangle(cornerRadius: 25).fill(Color.Neumorphic.main).softOuterShadow().frame(width: 350, height: 100))
-            Text("Last Monday")
+            Text("Monday")
                 .font(.title2)
                 .bold()
             VStack() {
-                if todaysLog.empty ?? false{
+                if mondaysLog.empty ?? false{
                     Text("No log for monday")
                 }
                 else {
-                    Text("Activity Limit Score: "+String(todaysLog.averageScore))
+                    Text("Activity Limit Score: "+String(mondaysLog.averageScore))
                 }
             }
                 .frame(width: 350, height: 100)
