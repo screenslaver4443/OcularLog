@@ -122,14 +122,31 @@ struct HomeView: View {
                     Text("No log for today")
                 }
                 else {
-                    Text("Activity Limit Score: "+String(todaysLog.averageScore))
                     Chart{
-                        ForEach(todaysLog.answersArray, id: \.self){answer in
-                                BarMark(x: .value("Question", "1"),
-                                        y: .value("Answer", answer)
-                                )
+                        LineMark(x: .value("Score", -6), y: .value("Line", 0))
+                            .lineStyle(StrokeStyle(lineWidth: 4))
+                        LineMark(x: .value("Score", 6), y: .value("Line", 0))
+                            .lineStyle(StrokeStyle(lineWidth: 4))
+                        PointMark(x: .value("Score", todaysLog.averageScore), y: .value("Line", 0))
+                            .annotation(){
+                                VStack{
+                                    Text("Activity Limit Score: "+String(todaysLog.averageScore)).font(.headline)
+                                    Image(systemName: "arrowshape.down.fill")
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fit)
+                                        .imageScale(.large)
+                                }
                             }
-                        }
+                            .symbolSize(201)
+                    }
+                    .aspectRatio(contentMode: .fit)
+                    .chartXScale(domain: [-7, 7])
+                    .chartXAxis{
+                        AxisMarks(values: [-6, 0, 6])
+                    }
+                    .chartXAxisLabel(){
+                        Text("Difficulty, None to Extreme")
+                    }
                     
                     }
                 }
@@ -167,8 +184,8 @@ struct HomeView: View {
             Spacer()
         }
         .padding()
+        
     }
-    
 }
 #Preview {
     HomeView()

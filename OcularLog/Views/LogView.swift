@@ -30,25 +30,26 @@ struct LogView: View {
         VStack(){
             if (finished == false){
                 VStack(){
-                    Text("How much difficulty are you having: ").font(.title)+Text(questions[questionNumber])
-                        .font(.title)
+                    Text("How much difficulty are you having: ").font(.largeTitle)+Text(questions[questionNumber])
+                        .font(.largeTitle)
+                        .bold()
                     Image(imageNames[questionNumber])
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .frame(minWidth: 200, maxWidth: 300, minHeight: 250, maxHeight: 350)
                         .padding()
-                    HStack(){
+                    VStack(){
                         Button(action: {submit(answer: 1)}){
-                            Text("None at All")
+                            Text("None at All").font(.title)
                         }.softButtonStyle(RoundedRectangle(cornerRadius: 20), pressedEffect: .flat)
                         Button(action: {submit(answer: 2)}){
-                            Text("A little Bit")
+                            Text("A little Bit").font(.title)
                         }.softButtonStyle(RoundedRectangle(cornerRadius: 20), pressedEffect: .flat)
                         Button(action: {submit(answer: 3)}){
-                            Text("Quite a Bit")
+                            Text("Quite a Bit").font(.title)
                         }.softButtonStyle(RoundedRectangle(cornerRadius: 20), pressedEffect: .flat)
                         Button(action: {submit(answer: 4)}){
-                            Text("Quite a Lot")
+                            Text("Quite a Lot").font(.title)
                         }.softButtonStyle(RoundedRectangle(cornerRadius: 20), pressedEffect: .flat)
                     }
                     
@@ -56,17 +57,19 @@ struct LogView: View {
                 Spacer()
             }
             else{
-                Text(Date.now.formatted(date: .long, time: .omitted)).font(.largeTitle)+Text(" has been logged.").font(.largeTitle)
-                Button("Replace Response"){
-                    finished = false
-                    questionNumber = 1
-                }.softButtonStyle(.capsule, pressedEffect: .flat)
+                VStack(){
+                    Text(Date.now.formatted(date: .long, time: .omitted)).font(.largeTitle)+Text(" has been logged.").font(.largeTitle)
+                    Text("Note: Because swift is dumb, you have to relaunch the app for Home to update").bold().foregroundStyle(.red)
+                    Button("Replace Response"){
+                        finished = false
+                        questionNumber = 1
+                    }.softButtonStyle(.capsule, pressedEffect: .flat)
+                }.padding()
             }
+            
+            
         }
-        
-        
     }
-    
     func submit(answer: Int){
         answers.append(Double(answerCalc(enteredAnswer: answer)))
         chooseQuestion(answer: answer)

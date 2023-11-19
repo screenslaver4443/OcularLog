@@ -50,7 +50,6 @@
 		30B1FA212AE0A6130082F8DA /* OcularLogUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OcularLogUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		30B1FA252AE0A6130082F8DA /* OcularLogUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OcularLogUITests.swift; sourceTree = "<group>"; };
 		30B1FA272AE0A6130082F8DA /* OcularLogUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OcularLogUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		30C60B5C2AFB3AA000B795CD /* OcularLog.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = OcularLog.entitlements; sourceTree = "<group>"; };
 		30F045FD2AF9C3C1009A68BD /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -114,7 +113,6 @@
 		30B1FA092AE0A6100082F8DA /* OcularLog */ = {
 			isa = PBXGroup;
 			children = (
-				30C60B5C2AFB3AA000B795CD /* OcularLog.entitlements */,
 				30B1FA0A2AE0A6100082F8DA /* OcularLogApp.swift */,
 				301026A42AE8D02F00641D6F /* Views */,
 				30B1FA0E2AE0A6130082F8DA /* Assets.xcassets */,
@@ -457,6 +455,7 @@
 				DEVELOPMENT_TEAM = SS5TW5DKT8;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -493,6 +492,7 @@
 				DEVELOPMENT_TEAM = SS5TW5DKT8;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
