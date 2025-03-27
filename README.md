@@ -13,7 +13,7 @@ To install OcularLog, you will need:
 	2.	Xcode (for building and running the app)
 Here are the steps to get started:
 # Clone the repository
-git clone https://github.com/your-username/OcularLog.git
+git clone https://github.com/screenslaver4443/OcularLog.git
 
 # Navigate into the project directory
 cd OcularLog
