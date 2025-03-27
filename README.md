@@ -1,4 +1,4 @@
-
+# Readme
 OcularLog is a mobile application designed to support users in documenting their recovery process after eye surgery. The goal of this project is to provide a simple and user-friendly platform for individuals to track their progress, for when they attend a follow up appointment.
 
 Created for a school project using Swift as I do not have a apple developer license I could not create a signed IPA.
